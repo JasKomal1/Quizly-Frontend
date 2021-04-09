@@ -1,9 +1,10 @@
 import React from 'react'
 
-const Quiz = () => {
+function Quiz({name, category}) {
     return (
         <div>
-            
+            {name}
+            {category}
         </div>
     )
 }
