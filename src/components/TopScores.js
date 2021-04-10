@@ -1,9 +1,9 @@
 import React from 'react'
 
-const TopScores = () => {
+function TopScores() {
     return (
         <div>
-            
+            New Score
         </div>
     )
 }

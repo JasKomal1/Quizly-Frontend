@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Scores = () => {
+function Scores() {
     return (
         <div>
             

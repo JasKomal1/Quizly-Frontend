@@ -1,10 +1,16 @@
 import React from 'react'
 
-function Quiz({name, category}) {
+function Quiz({name, category,faves}) {
+
+    
+
+
     return (
         <div>
-            {name}
             {category}
+            <br/>
+            <button onClick> {name} </button>
+            <button onClick> Add to Faves </button>
         </div>
     )
 }

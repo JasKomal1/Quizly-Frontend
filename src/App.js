@@ -1,25 +1,47 @@
-import logo from './logo.svg';
 import './App.css';
+import React, {useState, useEffect} from 'react'
+import User from './components/User'
+import Scores from './components/Scores'
+import Quizlist from './components/Quizlist'
+import Favorites from './components/Favorites'
+
 
 function App() {
+    const [quiz, setQuiz] = useState([])
+    const [faves, setFaves] = useState([])
+
+    useEffect(() => {
+        fetch("http://localhost:3000/quizzes")
+        .then ((r) => r.json())
+        .then (quizList => {
+            setQuiz(quizList)
+
+            })
+    },[])
+
+    function handleDeleteFave(id) {
+        const newArr = faves.filter(fave => fave.id !== id)
+        setFaves(newArr)
+    }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <User/>
+      <Scores/>
+      <Quizlist quiz={quiz} faves={faves}/>
+      <Favorites faves={faves} deleteFave={handleDeleteFave} quiz={quiz}/>
+   
     </div>
   );
 }
 
 export default App;
+
+
+
+
+
+
+  
+
+
