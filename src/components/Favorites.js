@@ -1,8 +1,12 @@
 import React, { useState } from 'react'
 
-function Favorites({deleteFave, quiz}) {
-    const [faveo, setFaveo] = useState([])
+function Favorites({deleteFave, quiz,faves}) {
     const {id} = quiz
+
+    const faveElements = faves.map((ele) => {
+        return <li>{ele.quiz.name}</li>
+    })
+
 
     function handleDelete() {
         fetch(`http://localhost:3000/favorites/${id}`,{
@@ -16,8 +20,11 @@ function Favorites({deleteFave, quiz}) {
 
     return (
         <div>
-            faves
+            <h3>favorites</h3>
             <button onClick={handleDelete}> Delete </button>
+            <ul> 
+                {faveElements} 
+            </ul>
         </div>
     )
 }

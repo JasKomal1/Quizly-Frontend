@@ -19,6 +19,16 @@ function App() {
             })
     },[])
 
+    useEffect(() => {
+      fetch("http://localhost:3000/favorites")
+      .then ((r) => r.json())
+      .then (favorites => {
+          setFaves(favorites)
+
+          })
+  },[])
+
+
     function handleDeleteFave(id) {
         const newArr = faves.filter(fave => fave.id !== id)
         setFaves(newArr)
@@ -28,7 +38,7 @@ function App() {
     <div className="App">
       <User/>
       <Scores/>
-      <Quizlist quiz={quiz} faves={faves}/>
+      <Quizlist quiz={quiz} faves={faves} setFaves={setFaves}/>
       <Favorites faves={faves} deleteFave={handleDeleteFave} quiz={quiz}/>
    
     </div>
