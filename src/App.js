@@ -23,6 +23,13 @@ function App() {
           })
   },[])
 
+  useEffect(() => {
+    fetch("http://localhost:3000/quizzes")
+    .then ((r) => r.json())
+    .then (quizzes => {
+      setQuiz(quizzes)
+    })
+  },[])
 
     function handleDeleteFave(id) {
         const newArr = faves.filter(fave => fave.id !== id)

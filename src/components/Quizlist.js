@@ -1,7 +1,7 @@
 import React,{useState, useEffect} from 'react'
 import Quiz from './Quiz'
 
-function Quizlist({setFaves}) {
+function Quizlist({setFaves,faves}) {
     const [quizzes, setQuizzes] = useState([]) 
 
     useEffect(() => {
@@ -14,7 +14,7 @@ function Quizlist({setFaves}) {
     },[])
 
     const display = quizzes.map((quizz) => {
-        return <Quiz key={quizz.id} quiz={quizz} />
+        return <Quiz key={quizz.id} quiz={quizz} setFaves={setFaves} faves={faves}/>
     })
 
 

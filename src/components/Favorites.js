@@ -1,21 +1,21 @@
 import React, { useState } from 'react'
 
 function Favorites({deleteFave, quiz,faves}) {
-    const {id} = quiz
+    
+   
 
     const faveElements = faves.map((ele) => {
-        return <div>{ele.quiz.name}</div>
+        return <div>{ele.quiz.name} <button onClick={() => handleDelete(ele.id)}>Delete</button> </div>
     })
 
 
-    function handleDelete() {
+    function handleDelete(id) {
         fetch(`http://localhost:3000/favorites/${id}`,{
             method: 'DELETE',
         })
-        .then((r) => r.json())
-        .then(() => {
             deleteFave(id);
-        })
+        
+        console.log(id)
     }
 
     return (
@@ -24,7 +24,6 @@ function Favorites({deleteFave, quiz,faves}) {
             
                 {faveElements} 
             
-            <button onClick={handleDelete}> Delete </button>
         </div>
     )
 }

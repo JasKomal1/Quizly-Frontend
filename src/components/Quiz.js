@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import Questions from './Questions'
 import {useHistory} from 'react-router-dom'
 
-function Quiz({ quiz, setFaves}) {
+function Quiz({ quiz, setFaves,faves}) {
    const history = useHistory()
 
     function onButtonClick(){
@@ -13,7 +13,7 @@ function Quiz({ quiz, setFaves}) {
 
         })
         .then((r) => r.json())
-        .then(favorite => setFaves(faves => [...faves, favorite]))
+        .then(favorite => setFaves(() => [...faves, favorite]))
      }
 
     function handleClick(){

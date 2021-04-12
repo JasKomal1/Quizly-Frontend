@@ -5,9 +5,11 @@ function Scores() {
     const [quesOne, setQuesOne] = useState(null)
     
 
+    
     return (
         <div>
-            Score
+            Scores 
+            <p>score1</p>
         </div>
     )
 }
