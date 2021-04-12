@@ -21,10 +21,10 @@ function Favorites({deleteFave, quiz,faves}) {
     return (
         <div>
             <h3>favorites</h3>
-            <button onClick={handleDelete}> Delete </button>
             <ul> 
                 {faveElements} 
             </ul>
+            <button onClick={handleDelete}> Delete </button>
         </div>
     )
 }

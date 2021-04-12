@@ -1,15 +1,27 @@
-import React from 'react'
+import React,{useState, useEffect} from 'react'
 import Quiz from './Quiz'
 
-function Quizlist({quiz, setFaves}) {
+function Quizlist({setFaves}) {
+    const [quizzes, setQuizzes] = useState([]) 
 
-    const quizzes = quiz.map((quizz) => {
-        return <Quiz id={quizz.id} key={quizz.id} name={quizz.name} category={quizz.category} questions={quizz.questions} setFaves={setFaves}/>
+    useEffect(() => {
+        fetch("http://localhost:3000/quizzes")
+        .then ((r) => r.json())
+        .then (quizList => {
+            setQuizzes(quizList)
+
+            })
+    },[])
+
+    const display = quizzes.map((quizz) => {
+        return <Quiz key={quizz.id} quiz={quizz} />
     })
+
+
 
     return (
         <div>
-            {quizzes}
+            {display}
         </div>
     )
 }
