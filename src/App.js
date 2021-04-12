@@ -39,7 +39,7 @@ function App() {
       <Favorites faves={faves} deleteFave={handleDeleteFave} quiz={quiz}/>
       </Route>
       <Route path='/quiz/:id'>
-        <Questions />
+        <Questions quizId={1}/>
         </Route>
       </Switch>
     </div>

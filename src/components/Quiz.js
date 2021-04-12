@@ -14,12 +14,13 @@ function Quiz({ quiz, setFaves}) {
         })
         .then((r) => r.json())
         .then(favorite => setFaves(faves => [...faves, favorite]))
-    }
+     }
 
     function handleClick(){
          history.push(`quiz/${quiz.id}`)
     }
     
+
 
     return (
         <div>
@@ -27,7 +28,7 @@ function Quiz({ quiz, setFaves}) {
             <br/>
             <button onClick={handleClick}> {quiz.name} </button>
             <button onClick={onButtonClick}> Add to Faves </button>
-            
+            {/* <Questions quizId={quiz.id}/> */}
         </div>
     )
 }

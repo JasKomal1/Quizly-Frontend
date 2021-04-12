@@ -4,7 +4,7 @@ function Favorites({deleteFave, quiz,faves}) {
     const {id} = quiz
 
     const faveElements = faves.map((ele) => {
-        return <li>{ele.quiz.name}</li>
+        return <div>{ele.quiz.name}</div>
     })
 
 
@@ -21,9 +21,9 @@ function Favorites({deleteFave, quiz,faves}) {
     return (
         <div>
             <h3>favorites</h3>
-            <ul> 
+            
                 {faveElements} 
-            </ul>
+            
             <button onClick={handleDelete}> Delete </button>
         </div>
     )
