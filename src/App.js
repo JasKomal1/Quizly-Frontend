@@ -11,8 +11,7 @@ import Questions from './components/Questions'
 function App() {
     const [quiz, setQuiz] = useState([])
     const [faves, setFaves] = useState([])
-
-   
+    const [points, setPoints] = useState(null)
 
     useEffect(() => {
       fetch("http://localhost:3000/favorites")
@@ -41,12 +40,12 @@ function App() {
       <Switch >
         <Route path='/home'>
       <User/>
-      <Scores/>
       <Quizlist faves={faves} setFaves={setFaves}/>
       <Favorites faves={faves} deleteFave={handleDeleteFave} quiz={quiz}/>
+      <Scores points={points}/>
       </Route>
       <Route path='/quiz/:id'>
-        <Questions quizId={1}/>
+        <Questions quizId={1} points={points} setPoints={setPoints}/>
         </Route>
       </Switch>
     </div>

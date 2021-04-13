@@ -20,7 +20,7 @@ function Favorites({deleteFave, quiz,faves}) {
 
     return (
         <div>
-            <h3>favorites</h3>
+            <h3>Favorites</h3>
             
                 {faveElements} 
             

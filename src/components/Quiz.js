@@ -3,6 +3,7 @@ import Questions from './Questions'
 import {useHistory} from 'react-router-dom'
 
 function Quiz({ quiz, setFaves,faves}) {
+    // const [score, setScore] = useState(null)
    const history = useHistory()
 
     function onButtonClick(){
@@ -24,11 +25,11 @@ function Quiz({ quiz, setFaves,faves}) {
 
     return (
         <div>
-            {quiz.category}
+            <h3>{quiz.category}</h3>
             <br/>
             <button onClick={handleClick}> {quiz.name} </button>
             <button onClick={onButtonClick}> Add to Faves </button>
-            {/* <Questions quizId={quiz.id}/> */}
+            {/* <Questions/> */}
         </div>
     )
 }

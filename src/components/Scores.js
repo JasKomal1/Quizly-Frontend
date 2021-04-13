@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 
-function Scores() {
+function Scores({points}) {
     const [scores, setScores] = useState(0)
     const [quesOne, setQuesOne] = useState(null)
     
@@ -8,8 +8,9 @@ function Scores() {
     
     return (
         <div>
-            Scores 
-            <p>score1</p>
+            <br/>
+            <h3>Scores</h3> 
+            <div>{points ? points : null}</div>
         </div>
     )
 }
