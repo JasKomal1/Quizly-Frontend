@@ -1,16 +1,22 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 
-function Scores({points}) {
-    const [scores, setScores] = useState(0)
-    const [quesOne, setQuesOne] = useState(null)
-    
+function Scores({}) {
+    const [userInfo, setUserInfo] = useState(null)
+
+    useEffect(() => {
+        fetch("http://localhost:3000/users/1")
+        .then((r) => r.json())
+        .then(setUserInfo)
+    }, [])
 
     
     return (
         <div>
             <br/>
             <h3>Scores</h3> 
-            <div>{points ? points : null}</div>
+            <ul>
+                {userInfo && userInfo.user_quiz_info.map(quiz => <li key={quiz.id}>{`${quiz.name}: ${quiz.points} points`}</li>)}
+            </ul>
         </div>
     )
 }

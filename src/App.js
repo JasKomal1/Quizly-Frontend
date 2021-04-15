@@ -9,31 +9,34 @@ import Questions from './components/Questions'
 
 
 function App() {
+    const [currentUser, setCurrentUser] = useState(null)
     const [quiz, setQuiz] = useState([])
     const [faves, setFaves] = useState([])
     const [points, setPoints] = useState(null)
+    const [userQuiz, setUserQuiz] = useState([])
 
     useEffect(() => {
+
       fetch("http://localhost:3000/favorites")
       .then ((r) => r.json())
       .then (favorites => {
           setFaves(favorites)
+       })
 
-          })
-  },[])
-
-  useEffect(() => {
-    fetch("http://localhost:3000/quizzes")
-    .then ((r) => r.json())
-    .then (quizzes => {
-      setQuiz(quizzes)
+       fetch("http://localhost:3000/quizzes")
+          .then ((r) => r.json())
+          .then (quizzes => {
+          setQuiz(quizzes)
     })
   },[])
+
 
     function handleDeleteFave(id) {
         const newArr = faves.filter(fave => fave.id !== id)
         setFaves(newArr)
     }
+
+    
 
   return (
     <div className="App">
@@ -42,10 +45,10 @@ function App() {
       <User/>
       <Quizlist faves={faves} setFaves={setFaves}/>
       <Favorites faves={faves} deleteFave={handleDeleteFave} quiz={quiz}/>
-      <Scores points={points}/>
+      <Scores />
       </Route>
       <Route path='/quiz/:id'>
-        <Questions quizId={1} points={points} setPoints={setPoints}/>
+        <Questions points={points} setPoints={setPoints}/>
         </Route>
       </Switch>
     </div>

@@ -3,6 +3,9 @@ import {useParams} from 'react-router-dom'
 import {useHistory} from 'react-router-dom'
 
 function Questions({points, setPoints}) {
+    const [userInfo, setUserInfo] = useState(null)
+    console.log(userInfo)
+    const [quizTitle, setQuizTitle] = useState('')
     const [questions, setQuestions] = useState([])
     const [choices, setChoices] = useState([])
     const params = useParams()
@@ -11,15 +14,23 @@ function Questions({points, setPoints}) {
     const history = useHistory()
 
     useEffect(() => {
-        fetch(`http://localhost:3000/quizzes/1`)
+        fetch(`http://localhost:3000/quizzes/${params['id']}`)
         .then ((r) => r.json())
         .then (quiz => {
-            console.log(quiz)
+            setQuizTitle(quiz.name)
             setQuestions(quiz.questions)
-            console.log(quiz.questions)
             setAnswers(quiz.questions.map((question,index) => {return {[index]: question.answer}}))
             })
+
+        fetch(`http://localhost:3000/users/1`)
+        .then ((r) => r.json())
+        .then (setUserInfo)
+        
+            
     },[])
+
+    const userQuizToPatch = userInfo && userInfo.user_quiz_info.find(quiz => quiz.name === quizTitle)
+
     console.log(questions)
     function handleClick(){
         history.push(`/home`)
@@ -36,31 +47,30 @@ function Questions({points, setPoints}) {
 
 
     function handleSubmit(){
-        // console.log(answers)
-        // console.log(choices)
-        // fetch(`http://localhost:3000/userquizzes/`, {
-        //     method: 'PATCH',
-        //     headers: {'Content-Type': 'application/json'},
-        //     body: JSON.stringify({'points': score, user_id: 1, quiz_id: quizId})
-        // })
-        //     .then(r => r.json())
-        //     .then(scores => setScore(scores.points)) 
-
+        let points = 0
         for(let key in choices){
             if(answers.some(obj => JSON.stringify(obj) === JSON.stringify({[key]:choices[key]}))) {
-                setScore( score + 1)
+                setScore(score => score += 1)
+                points++
             }
-        setPoints(score)
-        console.log(score)
-        console.log(points)
-        // console.log({[key]:choices[key]})
         }
-        history.push("/home")
+        
+        fetch(!!userQuizToPatch ? `http://localhost:3000/userquizzes/${userQuizToPatch.id}` : `http://localhost:3000/userquizzes`, {
+            method: !!userQuizToPatch ? 'PATCH' : 'POST',
+            headers: {'Content-Type': 'application/json', 
+            'Accept': 'application/json'
+        },
+            
+            body: JSON.stringify(!!userQuizToPatch ? {points: points} : {user_id: userInfo.id, quiz_id: params['id'], points: points})
+        })
+            .then(r => r.json())
+            .then(scores => console.log(scores, 'hello'))        
+        
+         history.push("/home")
+         window.location.reload()
     }
 
-    // function scores(){
-    //     setScore
-    // }
+   
 
     const displayQuestions = questions.map((question,index) => {
         return (
