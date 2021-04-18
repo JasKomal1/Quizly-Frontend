@@ -37,6 +37,13 @@ function App() {
     }
 
     
+    function handleDeleteUq(uq) {
+      fetch(`http://localhost:3000/userquizzes/${uq}`,{
+        method: 'DELETE',
+    })
+      const newQz = userQuiz.filter(quz => quz.id !== uq)
+      setQuiz(newQz)
+    }
 
   return (
     <div className="App">
@@ -45,7 +52,7 @@ function App() {
       <User/>
       <Quizlist faves={faves} setFaves={setFaves}/>
       <Favorites faves={faves} deleteFave={handleDeleteFave} quiz={quiz}/>
-      <Scores />
+      <Scores deleteScore={handleDeleteUq}/>
       </Route>
       <Route path='/quiz/:id'>
         <Questions points={points} setPoints={setPoints}/>

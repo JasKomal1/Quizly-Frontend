@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react'
 
-function Scores({}) {
+function Scores({deleteScore}) {
     const [userInfo, setUserInfo] = useState(null)
 
     useEffect(() => {
@@ -9,13 +9,20 @@ function Scores({}) {
         .then(setUserInfo)
     }, [])
 
+
+    function delScore(id) {
+       
+        deleteScore(id)
+        
+    }
+
     
     return (
         <div>
             <br/>
             <h3>Scores</h3> 
             <ul>
-                {userInfo && userInfo.user_quiz_info.map(quiz => <li key={quiz.id}>{`${quiz.name}: ${quiz.points} points`}</li>)}
+                {userInfo && userInfo.user_quiz_info.map(quiz => <li key={quiz.id}>{`${quiz.name}: ${quiz.points} points`}<button onClick={() => delScore(quiz.id)}>Delete</button></li>)}
             </ul>
         </div>
     )

@@ -41,10 +41,6 @@ function Questions({points, setPoints}) {
         setChoices(() => newChoices)
     }
 
-    // function passScores(){
-
-    // }
-
 
     function handleSubmit(){
         let points = 0
