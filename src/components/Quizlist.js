@@ -20,7 +20,7 @@ function Quizlist({setFaves,faves}) {
 
 
     return (
-        <div>
+        <div className='quiz'>
             {display}
         </div>
     )

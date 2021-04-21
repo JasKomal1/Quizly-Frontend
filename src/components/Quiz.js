@@ -1,6 +1,8 @@
 import React, {useState} from 'react'
 import Questions from './Questions'
 import {useHistory} from 'react-router-dom'
+import Card from 'react-bootstrap/Card'
+import CardDeck from 'react-bootstrap/CardDeck'
 
 function Quiz({ quiz, setFaves,faves}) {
    const history = useHistory()
@@ -23,11 +25,11 @@ function Quiz({ quiz, setFaves,faves}) {
 
 
     return (
-        <div>
+        <div className="quiz-box" >
             <h3>{quiz.category}</h3>
             <br/>
-            <button onClick={handleClick}> {quiz.name} </button>
-            <button onClick={onButtonClick}> Add to Faves </button>
+            <button onClick={handleClick}> {quiz.name} </button> {' '}
+            <button className='btnd' onClick={onButtonClick}> ❤️ </button>
         </div>
     )
 }

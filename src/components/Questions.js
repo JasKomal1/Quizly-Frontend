@@ -2,8 +2,8 @@ import React, {useState, useEffect} from 'react'
 import {useParams} from 'react-router-dom'
 import {useHistory} from 'react-router-dom'
 
-function Questions({points, setPoints}) {
-    const [userInfo, setUserInfo] = useState(null)
+function Questions({points, setPoints, setUserInfo, userInfo}) {
+    // const [userInfo, setUserInfo] = useState(null)
     console.log(userInfo)
     const [quizTitle, setQuizTitle] = useState('')
     const [questions, setQuestions] = useState([])
@@ -31,7 +31,7 @@ function Questions({points, setPoints}) {
 
     const userQuizToPatch = userInfo && userInfo.user_quiz_info.find(quiz => quiz.name === quizTitle)
 
-    console.log(questions)
+    
     function handleClick(){
         history.push(`/home`)
    }

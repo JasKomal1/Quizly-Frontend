@@ -11,3 +11,80 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+/* .card {
+  border: solid;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  padding-bottom: 2px;
+  margin: 5px;
+  flex-direction: column;
+} */
+
+.quiz {
+  display: flex;
+  flex-wrap: wrap;
+
+}
+
+.quiz-box {
+  border: solid;
+    margin: 1em;
+    padding: 1em;
+    border-radius: 20px;
+}
+
+.faves {
+  border: solid;
+  border-radius: 15px;
+  width: 300px;
+  
+}
+
+.score {
+  border: solid;
+  border-radius: 15px;
+  width: 300px;
+  margin: 1em;
+}
+
+.faveScore {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.btn {
+  border: none; /* Remove borders */
+  color: white; /* White text */
+  font-size: 9px; /* Set a font size */
+  cursor: pointer; /* Mouse pointer on hover */
+}
+
+/* Darker background on mouse-over */
+.btn:hover {
+  background-color: red;
+}
+
+.btnf {
+  border: none; /* Remove borders */
+  color: white; /* White text */
+  font-size: 9px; /* Set a font size */
+  cursor: pointer; /* Mouse pointer on hover */
+}
+
+/* Darker background on mouse-over */
+.btnf:hover {
+  background-color: red;
+}
+
+.btnd {
+  border: none; /* Remove borders */
+  color: white; /* White text */
+  font-size: 9px; /* Set a font size */
+  cursor: pointer; /* Mouse pointer on hover */
+}
+
+/* Darker background on mouse-over */
+.btnd:hover {
+  background-color: blue;
+}
